@@ -21,10 +21,10 @@
     $http({
     method: 'GET',
     url: 'http://localhost:3000/users'
-    }).then(function successCallback(response) {
-         uc.list = response.data;
+    }).success(function successCallback(response) {
+         uc.list = response;
          console.log("uc",uc.list)
-    }, function errorCallback(response) {
+    }).error(function errorCallback(response) {
         console.log("error: ",response);
    });
  }
