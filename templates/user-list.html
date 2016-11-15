@@ -18,18 +18,18 @@
     </thead>
 
     <tbody>
-      <tr>
+      <tr ng-repeat="user in usersCtrl.list">
         <td>
-          Arun
+          {{user.first_name}}
         </td>
         <td>
-          Sood
+          {{user.last_name}}
         </td>
         <td>
-          arsood
+          {{user.username}}
         </td>
         <td>
-          arsood@gmail.com
+           {{user.email}}
         </td>
         <td>
           <a href="#" class="btn btn-primary">Edit</a>

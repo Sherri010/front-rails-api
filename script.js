@@ -17,12 +17,14 @@
 
  function UsersController($scope,$http){
     var uc = this;
+
     $http({
     method: 'GET',
     url: 'http://localhost:3000/users'
     }).then(function successCallback(response) {
-       console.log(response);
+         uc.list = response.data;
+         console.log("uc",uc.list)
     }, function errorCallback(response) {
-       console.log("error: ",response);
+        console.log("error: ",response);
    });
  }
