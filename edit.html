@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head ng-app="userApp">
 	<title>User Manager</title>
+
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -33,6 +34,7 @@
 
 <body>
 
+	{{usersCtrl.editUser();}}
 <div class="small-container">
 	<h1>User Manager</h1>
 
@@ -68,8 +70,8 @@
 			<input type="text" class="form-control" />
 		</div>
 		<div class="margin-top-20 txt-right">
-			<a href="#" class="btn btn-default">Cancel</a>
-			<button type="submit" class="btn btn-primary">Edit User</button>
+			<a  ng-click="usersCtrl.editUser();" class="btn btn-default">Cancel</a>
+			<button   type="submit" class="btn btn-primary">Edit User</button>
 		</div>
 	</div>
 </div>

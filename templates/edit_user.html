@@ -1,0 +1,43 @@
+<div class="small-container">
+	<h1>User Manager</h1>
+
+	<div>
+		<a href="#" class="btn btn-primary">Back</a>
+	</div>
+</div>
+
+<div class="small-container margin-top-20">
+<form ng-submit="editCtrl.submitEdits($event)">
+	<div class="well">
+		<div class="bold">
+			First Name
+		</div>
+		<div class="margin-top-20">
+			<input ng-model="editCtrl.user.first_name" type="text" class="form-control" />
+		</div>
+		<div class="bold margin-top-20">
+			Last Name
+		</div>
+		<div class="margin-top-20">
+			<input ng-model="editCtrl.user.last_name" type="text" class="form-control" />
+		</div>
+		<div class="bold margin-top-20">
+			Username
+		</div>
+		<div class="margin-top-20">
+			<input ng-model="editCtrl.user.username" type="text" class="form-control" />
+		</div>
+		<div class="bold margin-top-20">
+			Email
+		</div>
+		<div class="margin-top-20">
+			<input ng-model="editCtrl.user.email" type="text" class="form-control" />
+		</div>
+		<div class="margin-top-20 txt-right">
+			<a  ng-click="usersCtrl.editUser();" class="btn btn-default">Cancel</a>
+			<button   type="submit" class="btn btn-primary">Edit User</button>
+		</div>
+	</div>
+	</form>
+</div>
+
