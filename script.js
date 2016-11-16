@@ -25,6 +25,7 @@
  });
 
  function UsersController($scope,$http,$routeParams ,AuthService){
+   AuthService.isAuthenticated();
     var uc = this;
 
     $http({
@@ -72,6 +73,7 @@
 }
 
 app.controller("editController",function($http,$location, $routeParams, AuthService){
+     AuthService.isAuthenticated();
    var vm = this;
 
     //Pull specific user and insert into edit form
@@ -128,7 +130,7 @@ var vm=this;
 });
 
 
-app.service("AuthService",function(){
+app.service("AuthService",function($location){
   this.setSession = function(user){
     localStorage.setItem("current_user", JSON.stringify(user));
   }
@@ -140,5 +142,13 @@ app.service("AuthService",function(){
 
   this.currentUser = function (){
     return JSON.parse(localStorage.getItem("current_user"));
+  }
+
+  this.isAuthenticated = function(){
+    if (this.currentUser()){
+      return;
+    }else {
+      $location.path("/login");
+    }
   }
 });
