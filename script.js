@@ -24,12 +24,15 @@
     });
  });
 
- function UsersController($scope,$http,$routeParams){
+ function UsersController($scope,$http,$routeParams ,AuthService){
     var uc = this;
 
     $http({
     method: 'GET',
-    url: 'http://localhost:3000/users'
+    url: 'http://localhost:3000/users',
+    headers:{
+      "Authorization":"Token token="+ AuthService.getToken()
+    }
     }).success(function successCallback(response) {
          uc.list = response;
          console.log("uc",uc.list)
@@ -49,6 +52,9 @@
             data:{
             user: uc.user
     } ,
+    headers:{
+      "Authorization":"Token token="+ AuthService.getToken()
+    },
     url: 'http://localhost:3000/users'
     }).success(function successCallback(response) {
          uc.list.push(response);
@@ -65,13 +71,16 @@
   }
 }
 
-app.controller("editController",function($http,$location, $routeParams){
+app.controller("editController",function($http,$location, $routeParams, AuthService){
    var vm = this;
 
     //Pull specific user and insert into edit form
     $http({
         method: "GET",
-        url: "http://localhost:3000/users/" + $routeParams.id + "/edit"
+        url: "http://localhost:3000/users/" + $routeParams.id + "/edit",
+        headers:{
+          "Authorization":"Token token="+ AuthService.getToken()
+        }
     }).success(function(user) {
         vm.user = user;
     }).error(function() {
@@ -87,6 +96,9 @@ app.controller("editController",function($http,$location, $routeParams){
             url: "http://localhost:3000/users/" + $routeParams.id,
             data: {
                 user: vm.user
+            },
+            headers:{
+              "Authorization":"Token token="+ AuthService.getToken()
             }
         }).success(function() {
             $location.path("/users");
@@ -119,5 +131,14 @@ var vm=this;
 app.service("AuthService",function(){
   this.setSession = function(user){
     localStorage.setItem("current_user", JSON.stringify(user));
+  }
+
+  this.getToken = function(){
+    var current_user = JSON.parse(localStorage.getItem("current_user"));
+    return current_user.auth_token;
+  }
+
+  this.currentUser = function (){
+    return JSON.parse(localStorage.getItem("current_user"));
   }
 });
