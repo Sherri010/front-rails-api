@@ -4,6 +4,11 @@
 
  app.config(function($routeProvider){
    $routeProvider
+   .when("/login",{
+     templateUrl:"templates/login.html",
+     controller:"loginController",
+     controllerAs: "loginCtrl"
+   })
      .when("/users",{
        templateUrl:"templates/user-list.html",
        controller:"UsersController",
@@ -56,29 +61,6 @@
    });
 
 
- //  uc.editUser_info = function(id){
- //   uc.editing_user = id;
- //   console.log("id ", id);
- // }
-
-
- //   uc.editUser = function(){
-
- //     console.log(" im in edit")
-
-
- //     var path = 'http://localhost:3000/users'+ uc.editing_user;
-
- //     $http({
- //        method: 'GET',
- //        url: path
- //        }).success(function successCallback(response) {
- //             uc.editing = response;
- //             console.log("uc editimng",uc.editing)
- //        }).error(function errorCallback(response) {
- //            console.log("error: ",response);
- //      });
- //    };
 
   }
 }
@@ -113,4 +95,21 @@ app.controller("editController",function($http,$location, $routeParams){
         });
     }
 
+});
+
+app.controller("loginController",function($http){
+var vm=this;
+  vm.login = function(event){
+     event.preventDefault();
+
+     $http({
+       method:"POST",
+       url:"http://localhost:3000/users/login",
+       data:vm.user
+     }).success(function(user){
+         console.log(user);
+     }).error(function(){
+        alert("Unauth");
+     })
+  }
 });

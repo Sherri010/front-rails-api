@@ -1,0 +1,30 @@
+<div class="small-container">
+	<h1>Login</h1>
+
+	<div>
+		<a href="#" class="btn btn-primary">Back</a>
+	</div>
+</div>
+
+<div class="small-container margin-top-20">
+<form ng-submit="loginCtrl.login($event)">
+	<div class="well">
+		<div class="bold margin-top-20">
+			email
+		</div>
+		<div class="margin-top-20">
+			<input ng-model="loginCtrl.user.email" type="text" class="form-control" />
+		</div>
+		<div class="bold margin-top-20">
+			password
+		</div>
+		<div class="margin-top-20">
+			<input ng-model="loginCtrl.user.password" type="text" class="form-control" />
+		</div>
+		<div class="margin-top-20 txt-right">
+			<a  class="btn btn-default">Cancel</a>
+			<button type="submit" class="btn btn-primary">login</button>
+		</div>
+	</div>
+	</form>
+</div>
