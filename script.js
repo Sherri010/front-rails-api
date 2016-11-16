@@ -97,7 +97,7 @@ app.controller("editController",function($http,$location, $routeParams){
 
 });
 
-app.controller("loginController",function($http){
+app.controller("loginController",function($http,$location,AuthService){
 var vm=this;
   vm.login = function(event){
      event.preventDefault();
@@ -107,9 +107,17 @@ var vm=this;
        url:"http://localhost:3000/users/login",
        data:vm.user
      }).success(function(user){
-         console.log(user);
-     }).error(function(){
+         AuthService.setSession(user);
+         $location.path("/users");
+       }).error(function(){
         alert("Unauth");
      })
+  }
+});
+
+
+app.service("AuthService",function(){
+  this.setSession = function(user){
+    localStorage.setItem("current_user", JSON.stringify(user));
   }
 });
