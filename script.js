@@ -27,4 +27,25 @@
     }).error(function errorCallback(response) {
         console.log("error: ",response);
    });
+
+
+    uc.submitUser = function(event){
+      event.preventDefault();
+
+       $http({
+    method: 'POST',
+    data:{
+        user: uc.user
+    } ,
+    url: 'http://localhost:3000/users'
+    }).success(function successCallback(response) {
+         uc.list.push(response);
+         console.log("OK");
+         uc.user ={};
+         $("#add-user-modal").modal("hide");
+
+    }).error(function errorCallback(response) {
+        console.log("error: ",response);
+   });
+    }
  }
